@@ -13,10 +13,11 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Matcher;
 
-public class MainActivity extends AppCompatActivity {
+    public class MainActivity extends AppCompatActivity {
 
-    protected Button b1,b2,b3,b4,b5,b6,b7,b8,b9,b0,bsuma,bresta,bborra,bresultado;
+    protected Button b1,b2,b3,b4,b5,b6,b7,b8,b9,b0,bsuma,bresta,bborra,bresultado,bmultiplicar;
     protected TextView numero;
 
     @Override
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         bsuma = findViewById(R.id.buttonsuma);
         bborra = findViewById(R.id.buttonborrar);
         bresta = findViewById(R.id.buttonresta);
+        bmultiplicar = findViewById(R.id.multiplicar);
         bresultado = findViewById(R.id.buttonigual);
         numero = findViewById(R.id.textView);
     }
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         bresultado.setOnClickListener((l) -> suma());
         bsuma.setOnClickListener((l) -> agregaNumero("+"));
         bresta.setOnClickListener((l) -> agregaNumero("-"));
+        bmultiplicar.setOnClickListener((l) -> agregaNumero("*"));
         bborra.setOnClickListener((l) -> borra());
     }
 
@@ -79,37 +82,18 @@ public class MainActivity extends AppCompatActivity {
     }
     private void suma(){
         try {
-            int[] suma = {0};
-            List<String> lista = Arrays.asList(numero.getText().toString().split("(?=-)|(\\+)"));
-            lista.forEach((v) -> suma[0] += (Integer.parseInt(v)));
-            numero.setText(String.valueOf(suma[0]));
+            numero.setText(String.valueOf(Calculator.suma(numero.getText().toString())));
         }catch(NumberFormatException e){
             e.printStackTrace();
-            Toast.makeText(this,"Numero muy largo para operar",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Sintax Error",Toast.LENGTH_SHORT).show();
             numero.setText("0");
         }
     }
     private void agregaNumero(String s){
 
-        int size,i = 0;
         String p = numero.getText()+s;
-        List<String> lista = new LinkedList<>(Arrays.asList((p).split("(\\+)&&(?=-)")));
-        size = lista.size();
-        for (;i < size ;i++) {
-            p = lista.get(i);
-            if(p.charAt(0) == '0') {
-                lista.remove(i);
-                lista.add(i,p.substring(1));
-            }
-        }
-        numero.setText(getString(lista));
-    }
-
-    private static String getString( List<String> lista) {
-        String p ="";
-        for (String str : lista) {
-                p += str;
-        }
-        return p;
+        if(p.length()==2 &&  p.matches("^0*[\\d|-]"))
+            p = String.valueOf(p.charAt(1));
+        numero.setText(p);
     }
 }

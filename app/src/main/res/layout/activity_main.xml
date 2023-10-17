@@ -17,8 +17,6 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
             android:gravity="right"
             android:text="0"
             android:textAlignment="gravity"
@@ -36,7 +34,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -207,6 +205,16 @@
                 android:textSize="24sp" />
 
             <Button
+                android:id="@+id/multiplicar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/boton"
+                android:text="*" />
+
+            <Button
                 android:id="@+id/buttonigual"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -227,6 +235,7 @@
                 android:background="@drawable/boton"
                 android:text="C"
                 android:textSize="24sp" />
+
         </LinearLayout>
     </LinearLayout>
 
