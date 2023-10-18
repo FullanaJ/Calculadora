@@ -1,13 +1,8 @@
 package com.fullana.calculadora;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-
-import static org.junit.Assert.*;
-
-import android.widget.TextView;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
